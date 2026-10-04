@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    restart: always
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      EXPEDIENTE_INICIO: ${EXPEDIENTE_INICIO:-7}
+      EXPEDIENTE_FIM: ${EXPEDIENTE_FIM:-17}
+      NOT_ATTENDED_RATE: ${NOT_ATTENDED_RATE:-0.05}
+      TZ: America/Sao_Paulo
+    ports:
+      - "8000:8000"

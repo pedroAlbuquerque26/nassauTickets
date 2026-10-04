@@ -1,0 +1,48 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nassau_tickets}
+      MYSQL_USER: ${MYSQL_USER:-nassau}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-nassau}
+    ports:
+      - "${MYSQL_HOST_PORT:-3308}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-nassau}:${MYSQL_PASSWORD:-nassau}@db:3306/${MYSQL_DATABASE:-nassau_tickets}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-dev-secret}
+      EXPEDIENTE_INICIO: ${EXPEDIENTE_INICIO:-7}
+      EXPEDIENTE_FIM: ${EXPEDIENTE_FIM:-17}
+      NOT_ATTENDED_RATE: ${NOT_ATTENDED_RATE:-0.05}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-480}
+      PANEL_LAST_CALLS: ${PANEL_LAST_CALLS:-5}
+      SEED_GESTOR_LOGIN: ${SEED_GESTOR_LOGIN:-admin}
+      SEED_GESTOR_SENHA: ${SEED_GESTOR_SENHA:-admin123}
+      SEED_GESTOR_NOME: ${SEED_GESTOR_NOME:-Gestor}
+      SEED_ATENDENTE_LOGIN: ${SEED_ATENDENTE_LOGIN:-atendente}
+      SEED_ATENDENTE_SENHA: ${SEED_ATENDENTE_SENHA:-atendente123}
+      SEED_ATENDENTE_NOME: ${SEED_ATENDENTE_NOME:-Atendente}
+      SEED_ATENDENTE_PERFIL: ${SEED_ATENDENTE_PERFIL:-GESTOR}
+      TZ: America/Sao_Paulo
+    ports:
+      - "8000:8000"
+
+volumes:
+  mysql_data:
