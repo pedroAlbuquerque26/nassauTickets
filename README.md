@@ -79,8 +79,11 @@ Preencha os nomes, matrículas e papéis do grupo antes da entrega.
 
 | Nome | Matrícula | Papel |
 |---|---|---|
-| A preencher | A preencher | Scrum Master |
-| A preencher | A preencher | Desenvolvedor |
+| Pedro Santos | 01795967 | Scrum Master |
+| Brunno Santos | 01796945 | Documentador |
+| Sérgio Júnior | 01800630  | Desenvolvedor |
+| João Batista  |  01791156 | Desenvolvedor |
+| Rhuan de melo | 01821902 | Testador |
 
 ## Licença
 
