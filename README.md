@@ -146,6 +146,14 @@ Senhas de usuários são armazenadas como hash bcrypt e as rotas restritas usam 
 
 Consulte [`docs/requirements/requisitos.md`](docs/requirements/requisitos.md) e o documento [`Sistema para controle de atendimento.pdf`](docs/requirements/Sistema%20para%20controle%20de%20atendimento.pdf).
 
+| Nome | Matrícula | Papel |
+|---|---|---|
+| Pedro Santos | 01795967 | Scrum Master |
+| Brunno Santos | 01796945 | Documentador |
+| Sérgio Júnior | 01800630  | Desenvolvedor |
+| João Batista  |  01791156 | Desenvolvedor |
+| Rhuan de melo | 01821902 | Testador |
+
 ## Uso de IA
 
 Foi utilizado sim IA, foi utilizado Codex no front end e Opencode back end, sendo o front feito com uso da IA apenas como auxilio usando como base um sistema real de senhas da empresa onde o desenvolvedor do front end trabalha, o mesmo se aplica ao backend, foi usado como base o codigo do backend de um sistema real de uma empresa
